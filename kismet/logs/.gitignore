@@ -1,0 +1,4 @@
+# Warwheel Logs .gitignore
+*.kismet
+*.pcapng
+*.pcappi
