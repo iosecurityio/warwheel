@@ -102,3 +102,8 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+
+# Kismet Files
+*.pcapng
+*.pcappi
+*.kismet
