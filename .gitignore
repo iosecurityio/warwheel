@@ -107,3 +107,6 @@ venv.bak/
 *.pcapng
 *.pcappi
 *.kismet
+
+# Local PDFs
+warpi.pdf
