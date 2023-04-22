@@ -1,0 +1,3 @@
+httpx
+gpsd-py3
+kismet_rest
