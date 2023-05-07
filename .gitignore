@@ -110,3 +110,9 @@ venv.bak/
 
 # Local PDFs
 warpi.pdf
+
+# Code Workspace
+*.code-workspace
+
+# Warwheel logs
+*.log

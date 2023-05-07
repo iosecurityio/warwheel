@@ -1,9 +1,5 @@
 #!/bin/bash
 
-# check internet
-# refactor to other pc
-ping -q -w 1 -c 1 `ip r | grep default | cut -d ' ' -f 3` > /dev/null && echo Internet Up || echo No Internet
-
 # Install Wifi Stuff
 # https://www.kismetwireless.net/docs/readme/config_files/
 wget -O - https://www.kismetwireless.net/repos/kismet-release.gpg.key | sudo apt-key add -
@@ -24,14 +20,3 @@ sudo usermod -a -G kismet pi
 sudo mkdir /var/log/kismet
 sudo chmod 777 /var/log/kismet
 #sudo nano /usr/local/etc/kismet.conf
-
-# place nic in monitor mode
-# check gps 
-# place gps in active mode
-# start kismet or whatever you are going to use to snarf
-
-
-# Refs
-# http://www.intellamech.com/RaspberryPi-projects/rpi3_kismet.html
-# https://stackoverflow.com/questions/17291233/how-can-i-check-internet-access-using-a-bash-script-on-linux
-

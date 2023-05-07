@@ -1,5 +1,5 @@
 #Warwheel v0.0.1
-#Created by: @113n
+#Created by: Allen Montgomery <allen@iosecurity.io>
 #https://github.com/iosecurityio/warwheel
 #Portable War Driving Tool
 # -*- coding: utf-8 -*-
@@ -13,6 +13,7 @@ init(autoreset=True) # initialize colarama
 kismet_user = ""
 kismet_pass = ""
 wigle_api_key = ""
+kismet_api_key = ""
 
 class warwheel:
         """Creates a warwheel object"""
@@ -25,6 +26,8 @@ class warwheel:
                 self.bluetooth = False
                 self.gps = False
                 self.kismet = False
+                self.end_time = ""
+                self.end_date = ""
                 self.splash()
                 self.startup()
 
@@ -37,28 +40,31 @@ __        __        """ + Fore.GREEN + """          _               _ """ + Fore
   \ V  V / (_| | |  """ + Fore.GREEN + """ \ V  V /| | | |  __/  __/ |""" + Fore.LIGHTGREEN_EX + """
    \_/\_/ \__,_|_|  """ + Fore.GREEN + """  \_/\_/ |_| |_|\___|\___|_|""")
                 print("warwheel.py v0.0.1")
-                print("Created by: @113n")
+                print("Created by: allen@iosecurity.io")
                 print("https://github.com/iosecurityio/warwheel")
-                print("*" * 50)
+                print("*" * 48)
 
         def start(self):
                 self.start_time = datetime.now().strftime("%H:%M:%S")
                 #self.start_location = input("Where are you starting from? ")
 
         def check_internet(self):
-               print("Checking internet")
+               print("Checking Internet...")
 
         def check_bluetooth(self):
-               print("Checking Bluetooth")
+               print("Checking Bluetooth...")
 
         def check_gps(self):
                print("Checking GPS...")
 
         def check_kismet(self):
                 print("Checking Kismet...")
-                devices = kismet_rest.Devices()
-                for device in devices.all(ts=1546300800):
-                        print(device)
+                try:
+                        devices = kismet_rest.Devices()
+                        for device in devices.all(ts=1546300800):
+                                print(device)
+                except Exception as e:
+                        print(f"[X] Error connecting to Kismet: {e}")
 
         def upload_scan(self, file):
                 """Upload a scan to WiGLE.net via the API
@@ -74,6 +80,11 @@ __        __        """ + Fore.GREEN + """          _               _ """ + Fore
                 except Exception as e:
                         print(f"[X] Error uploading to WiGLE: {e}")
 
+        def shutdown(self):
+                self.end_time = datetime.now().strftime("%H:%M:%S")
+                self.end_date = datetime.now().strftime("%m-%d-%Y")
+                print("Shutting down...")
+
         def startup(self):
                 self.check_internet()
                 self.check_bluetooth()
@@ -81,9 +92,10 @@ __        __        """ + Fore.GREEN + """          _               _ """ + Fore
                 self.start()
 
 def main():
-      print("Starting warwheel...")
-      warwheeler = warwheel()
-      print(warwheeler.start_date)
+        """Main function of Warwheel project"""
+        
+        warwheeler = warwheel()
+        warwheeler.check_kismet()
 
 if __name__ == '__main__':
     main()

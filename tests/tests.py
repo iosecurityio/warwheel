@@ -1,7 +1,9 @@
 # TESTS
 from colorama import init, Fore
 from datetime import datetime, timedelta
-init(autoreset=True) # initialize colarama
+import httpx
+init(autoreset=True) # initialize colorama
+
 
 class warwheel:
         """Creates a warwheel object"""
@@ -24,9 +26,10 @@ class warwheel:
                 #self.start_location = input("Where are you starting from? ")
 
 def main():
-      print("Starting warwheel...")
+      print("Testing warwheel...")
       warwheeler = warwheel()
       print(warwheeler.start_date)
 
+       
 if __name__ == '__main__':
     main()
