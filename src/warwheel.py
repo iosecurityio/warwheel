@@ -1,4 +1,4 @@
-#Warwheel v0.0.1
+#Warwheel v0.0.1b
 #Created by: Allen Montgomery <allen@iosecurity.io>
 #https://github.com/iosecurityio/warwheel
 #Portable War Driving Tool
@@ -29,7 +29,7 @@ class warwheel:
                 self.end_time = ""
                 self.end_date = ""
                 self.splash()
-                self.startup()
+                self.start()
 
 
         def splash(self):
@@ -39,32 +39,63 @@ __        __        """ + Fore.GREEN + """          _               _ """ + Fore
  \ \ /\ / / _` | '__""" + Fore.GREEN + """\ \ /\ / / '_ \ / _ \/ _ \ |""" + Fore.LIGHTGREEN_EX + """
   \ V  V / (_| | |  """ + Fore.GREEN + """ \ V  V /| | | |  __/  __/ |""" + Fore.LIGHTGREEN_EX + """
    \_/\_/ \__,_|_|  """ + Fore.GREEN + """  \_/\_/ |_| |_|\___|\___|_|""")
-                print("warwheel.py v0.0.1")
-                print("Created by: allen@iosecurity.io")
-                print("https://github.com/iosecurityio/warwheel")
-                print("*" * 48)
+                print("Name: warwheel.py v0.0.1b")
+                print("Author: allen@iosecurity.io")
+                print("Source: https://github.com/iosecurityio/warwheel")
+                print("-" * 48)
 
         def start(self):
                 self.start_time = datetime.now().strftime("%H:%M:%S")
-                #self.start_location = input("Where are you starting from? ")
+                self.check_internet()
+                self.check_bluetooth()
+                self.check_gps()
+                self.get_location()
+                self.start_location = "get location from gps"
 
         def check_internet(self):
-               print("Checking Internet...")
+                try:            
+                        print("[*] Checking Internet Connection...")
+                        with httpx.Client() as client:
+                                r = client.get("https://www.google.com")
+                                if r.status_code == 200:
+                                        self.internet = True
+                                        print(Fore.GREEN + "[*] Internet Connection: OK")
+                                else:
+                                        self.internet = False
+                                        print(Fore.RED + "[X] Internet Connection: DOWN")
+                except Exception as e:
+                        print(f"[X] Error checking Internet Connection: {e}")
 
         def check_bluetooth(self):
-               print("Checking Bluetooth...")
+                try:
+                        print("[*] Checking Bluetooth...")
+                
+                except Exception as e:
+                        print(Fore.RED + f"[X] Error checking Bluetooth: {e}")
 
         def check_gps(self):
-               print("Checking GPS...")
+                try:
+                        print("[*] Checking GPS...")
+                except Exception as e:
+                        print(Fore.RED + f"[X] Error checking GPS: {e}")
+        
+        def get_location(self):
+                if not self.gps:
+                        print(Fore.RED + "[X] GPS is not enabled.")
+                        return
+                try:
+                        print("[*] Getting Location...")
+                except Exception as e:
+                        print(Fore.RED + f"[X] Error getting Location: {e}")
 
         def check_kismet(self):
-                print("Checking Kismet...")
+                print("[*] Checking Kismet...")
                 try:
                         devices = kismet_rest.Devices()
                         for device in devices.all(ts=1546300800):
                                 print(device)
                 except Exception as e:
-                        print(f"[X] Error connecting to Kismet: {e}")
+                        print(Fore.RED + f"[X] Error connecting to Kismet: {e}")
 
         def upload_scan(self, file):
                 """Upload a scan to WiGLE.net via the API
@@ -78,24 +109,24 @@ __        __        """ + Fore.GREEN + """          _               _ """ + Fore
                         with httpx.post("https://api.wigle.net/api/v2/file/upload", headers=headers,files={"file": open(file, "rb")}) as r:
                                 print(r.text)
                 except Exception as e:
-                        print(f"[X] Error uploading to WiGLE: {e}")
+                        print(Fore.RED + f"[X] Error uploading to WiGLE: {e}")
 
         def shutdown(self):
                 self.end_time = datetime.now().strftime("%H:%M:%S")
                 self.end_date = datetime.now().strftime("%m-%d-%Y")
-                print("Shutting down...")
+                print(Fore.LIGHTRED_EX + "[!] Shutting down.")
 
-        def startup(self):
-                self.check_internet()
-                self.check_bluetooth()
-                self.check_gps()
-                self.start()
+
 
 def main():
         """Main function of Warwheel project"""
         
         warwheeler = warwheel()
-        warwheeler.check_kismet()
+        print(f"Start Date: {warwheeler.start_date}")
+        print(f"Start Time: {warwheeler.start_time}")
+        warwheeler.shutdown()
+        print(f"End Date: {warwheeler.end_date}")
+        print(f"End Time: {warwheeler.end_time}")
 
 if __name__ == '__main__':
     main()
