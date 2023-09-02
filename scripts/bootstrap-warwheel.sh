@@ -14,7 +14,8 @@ sudo apt-get upgrade -y
 # sudo dnf install make automake gcc gcc-c++ kernel-devel git libwebsockets-devel pkg-config zlib-devel libnl3-devel libcap-devel libpcap-devel NetworkManager-libnm-devel libdwarf libdwarf-devel elfutils-devel libsqlite3x-devel protobuf-devel protobuf-c-devel protobuf-compiler protobuf-c-compiler lm_sensors-devel libusb-devel fftw-devel gpsd kismet gpsd-clients -y
 
 # Add pi user to kismet group
-sudo usermod -a -G kismet pi
+# If Raspberry pi-
+# sudo usermod -a -G kismet pi
 
 # Configure logging
 sudo mkdir /var/log/kismet

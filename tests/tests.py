@@ -1,35 +1,20 @@
 # TESTS
-from colorama import init, Fore
-from datetime import datetime, timedelta
-import httpx
-init(autoreset=True) # initialize colorama
+from colorama import init, Fore, Back, Style
+from bleak import BleakScanner as bs
 
-
-class warwheel:
-        """Creates a warwheel object"""
-
-        def __init__(self):
-                self.start_time = ""
-                self.start_date = datetime.now().strftime("%m-%d-%Y")
-                self.start_location = ""
-                self.splash()
+class WarWheel:
 
         def splash(self):
-                print
-                print("Warwheel v0.0.1")
-                print("Created by: @113n")
-                print("https://github.com/iosecurityio/warwheel")
-                print("*" * 50)
+                print(Fore.BLUE + Style.DIM + """
+M""MMM""MMM""M                   """ + Fore.LIGHTBLUE_EX + Style.BRIGHT + """M""MMM""MMM""M dP                         dP""" + Fore.BLUE + Style.DIM + """ 
+M  MMM  MMM  M                   """ + Fore.LIGHTBLUE_EX + Style.BRIGHT + """M  MMM  MMM  M 88                         88""" + Fore.BLUE + Style.DIM + """ 
+M  MMP  MMP  M .d8888b. 88d888b. """ + Fore.LIGHTBLUE_EX + Style.BRIGHT + """M  MMP  MMP  M 88d888b. .d8888b. .d8888b. 88""" + Fore.BLUE + Style.DIM + """ 
+M  MM'  MM' .M 88'  `88 88'  `88 """ + Fore.LIGHTBLUE_EX + Style.BRIGHT + """M  MM'  MM' .M 88'  `88 88ooood8 88ooood8 88""" + Fore.BLUE + Style.DIM + """
+M  `' . '' .MM 88.  .88 88       """ + Fore.LIGHTBLUE_EX + Style.BRIGHT + """M  `' . '' .MM 88    88 88.  ... 88.  ... 88""" + Fore.BLUE + Style.DIM + """
+M    .d  .dMMM `88888P8 dP       """ + Fore.LIGHTBLUE_EX + Style.BRIGHT + """M    .d  .dMMM dP    dP `88888P' `88888P' dP""" + Fore.BLUE + Style.DIM + """
+MMMMMMMMMMMMMM                   """ + Fore.LIGHTBLUE_EX + Style.BRIGHT + """MMMMMMMMMMMMMM""")
 
-        def start(self):
-                self.start_time = datetime.now().strftime("%H:%M:%S")
-                #self.start_location = input("Where are you starting from? ")
 
-def main():
-      print("Testing warwheel...")
-      warwheeler = warwheel()
-      print(warwheeler.start_date)
-
-       
 if __name__ == '__main__':
-    main()
+    init(autoreset=True) # initialize colorama
+    WarWheel().splash()

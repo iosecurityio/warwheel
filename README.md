@@ -10,9 +10,9 @@ In my case, I will share my setup and configuration files that I use in a Sling 
 
 ## Usage
 
-1. `chmod +x ./bootstrap_warwheel.sh`
+1. `chmod +x ./bootstrap-warwheel.sh`
 
-1. `./bootstrap_warwheel.sh`
+1. `./bootstrap-warwheel.sh`
 
 ## Project Structure
 
@@ -24,7 +24,7 @@ warwheel
 ├── README.md
 ├── requirements.txt
 ├── scripts
-│   ├── bootstrap_warwheel.sh
+│   ├── bootstrap-warwheel.sh
 │   ├── start-kismet.sh
 │   └── troubleshoot-gps.sh
 ├── src
