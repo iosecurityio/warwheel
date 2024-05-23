@@ -2,3 +2,4 @@ httpx
 gpsd-py3
 kismet_rest
 colorama
+requests>=2.32.0 # not directly required, pinned by Snyk to avoid a vulnerability
