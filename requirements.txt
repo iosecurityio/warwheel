@@ -2,3 +2,5 @@ httpx
 gpsd-py3
 kismet_rest
 colorama
+anyio>=4.4.0 # not directly required, pinned by Snyk to avoid a vulnerability
+urllib3>=2.2.2 # not directly required, pinned by Snyk to avoid a vulnerability
