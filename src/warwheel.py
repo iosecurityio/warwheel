@@ -1,7 +1,12 @@
-# Warwheel v0.0.1b
-# Created by: Allen Montgomery <allen@iosecurity.io>
-# https://github.com/iosecurityio/warwheel
-# Portable War Driving Tool
+"""
+Warwheel v0.0.2b
+Name: warwheel.py
+Created by: Allen Montgomery <allen@iosecurity.io>
+Source: https://github.com/iosecurityio/warwheel
+Purpose: Portable War Driving Tool for Wardriving, Onewheeling, Warwalking, etc.
+Date: 2025-01-28
+"""
+
 # -*- coding: utf-8 -*-
 
 from colorama import init, Fore
