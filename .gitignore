@@ -116,3 +116,4 @@ warpi.pdf
 
 # Warwheel logs
 *.log
+.idea
