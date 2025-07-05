@@ -1,35 +1,60 @@
-# TESTS
-from colorama import init, Fore
-from datetime import datetime, timedelta
-import httpx
-init(autoreset=True) # initialize colorama
+#!python3
+# This file is used to test the warwheel module
+from datetime import datetime
+
+from colorama import init
+
+# Turn on colors
+init(autoreset=True)
 
 
-class warwheel:
-        """Creates a warwheel object"""
+class Warwheel:
+    """Creates a Warwheel object"""
 
-        def __init__(self):
-                self.start_time = ""
-                self.start_date = datetime.now().strftime("%m-%d-%Y")
-                self.start_location = ""
-                self.splash()
+    def __init__(self):
+        self._start_time = ""
+        self._start_date = ""
+        self._splash()
+        self._start()
 
-        def splash(self):
-                print
-                print("Warwheel v0.0.1")
-                print("Created by: @113n")
-                print("https://github.com/iosecurityio/warwheel")
-                print("*" * 50)
+    def _get_start_time(self):
+        return self._start_time
 
-        def start(self):
-                self.start_time = datetime.now().strftime("%H:%M:%S")
-                #self.start_location = input("Where are you starting from? ")
+    def _set_start_time(self, time):
+        self._start_time = time
+
+    def _get_start_date(self):
+        return self._start_date
+
+    def _set_start_date(self, date):
+        self._start_date = date
+
+    def _splash(self):
+        """Splash screen for warwheel tests"""
+        print("Warwheel Tests")
+        link = "https://github.com/iosecurityio/warwheel"
+        sep = "*" * len(link)
+        print(link)
+        print(sep)
+
+    def _start(self):
+        """Start the tests"""
+        now = datetime.now()
+        # Set the startup time and date
+        self._set_start_time(now.strftime("%H:%M:%S"))
+        self._set_start_date(now.strftime("%m-%d-%Y"))
+        print(f"Start Time: {self._get_start_time()}")
+        print(f"Start Date: {self._get_start_date()}")
+
+        print("Hello World!")
+
 
 def main():
-      print("Testing warwheel...")
-      warwheeler = warwheel()
-      print(warwheeler.start_date)
+    """Runs warwheel tests"""
 
-       
+    # Create a warwheel object
+    warwheel = Warwheel()
+
+
 if __name__ == '__main__':
     main()
